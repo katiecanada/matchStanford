@@ -32,3 +32,23 @@ request. This communication requires a shared secret key for security, which is 
 user\_controller.rb file.
 
 The PHP script must be run from a privileged location. The details of setting this up must be worked out with someone with knowledge of the Stanford WebAuth system.
+
+### Emails
+
+There is a script in the script/ directory to send emails using the UNIX mailer installed on the Stanford servers. typing
+
+	ruby script/email.rb
+
+will give you a list of commands that are possible from the script. Keep in mind that these commands must be run from the rails console, and are actually loaded as functions. Thus, you must do something like this:
+
+	rails console
+	>>> load('script/email.rb')
+	>>> blast_teasers()
+
+### Statistics
+
+There is also a ruby script for printing statistics about the application's usage. To run, load script/stats.rb from the rails console
+
+	rails console
+	>>> load('script/stats.rb')
+	>>> crushed()
