@@ -1,0 +1,82 @@
+<!-- TODO: Do all these includes with the asset pipeline -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+<!-- Hacky solution to make the drag-drop work on mobile -->
+<script src="/3rd-party/jquery.ui.touch-punch.js"></script>
+
+<%= javascript_tag do %>
+  // Insert the user id variable with ERB
+  // TODO: do this in a better way
+  var limit = <%= j "#{@limit}" %>;
+<% end %>
+
+<script src="/js/choice.js"></script>
+
+<div class="row">
+  <img src="/img/logo.png" width="200px" />
+  <div style="display: inline-block; float: right; padding-top:30px;" class="lead">Hello, <%= @user.firstName %> <%= @user.lastName %>! | <%= link_to "FAQ", :action => :faq %> | <%= link_to "Log Out", :action => :logout %></div>
+</div>
+
+<div ng-app="ChoiceApp">
+  <div ng-controller="ChoiceCtrl">
+    <div class="row">
+      <h2>My Crushes <small>Drag to rank. Only the top <%= @limit %> choices will be saved.</small></h2>
+
+      <div class="well">
+        <ul id="sortable" class="unstyled" style="display: inline-block;">
+          <li ng-repeat="u in chosenUsers | makeranks" id="{{u.rank}}" class="{{(u.rank >= <%= @limit %>) | iif : 'muted' : ''}}">
+            <div style="cursor: default; padding: 3px; margin: 3px; background-color: #fff; border: solid 1px #000; border-radius: 5px; -moz-border-radius: 5px;">
+              <span class="badge">{{u.rank + 1}}</span>
+              {{u.firstName}}
+              {{u.middleName | iif : u.middleName : ""}}
+              {{u.lastName}}
+              <a href="#" ng-click="removeChoice(u.rank)">(remove)</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <button class="btn btn-primary" ng-click="saveChoices()">Save Choices</button>
+      <button class="btn btn-danger" ng-click="clearChoices()">Clear</button>
+      <button class="btn" ng-click="cancel()">Cancel</button>
+    </div>
+
+    <div class="row">
+      <h3>Add A Crush <small>Click to add.</small></h3>
+
+      <form class="form-search">
+        <div class="input-append">
+          <input type="text" class="search-query input-xlarge" ng-model="search" placeholder="Search for People" />
+          <button class="btn" ng-click="searchUsers()">
+            Search
+          </button>
+        </div>
+      </form>
+
+      <div class="well">
+        <ul class="unstyled">
+          <li ng-repeat="u in users | orderBy:'lastName'">
+            <a href="#" ng-click="addChoice(u)">
+              {{u.firstName}}
+              {{u.middleName | iif : u.middleName : ""}}
+              {{u.lastName}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41537120-1', 'stanford.edu');
+  ga('send', 'pageview');
+</script>

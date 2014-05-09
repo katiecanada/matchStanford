@@ -1,0 +1,27 @@
+<div class="row">
+  <img src="/img/logo.png" width="400px" />
+</div>
+
+<div class="row">
+  <div class="span10 offset1">
+    <p class="lead">
+      Hey there, <%= @user.firstName %>! Guess what, you're about to graduate! You've been at this school for four long years. You've accomplished great things, some big, some small. But what's that one thing that you wish you'd done? That one regret? Was it a club you wish you'd joined? A class you wish you'd taken? Or some person you wish you'd talked to?
+    </p>
+
+    <p class="lead">
+      Luckily, we're here to help! Remember that crush you had? That cutie in your IHUM section? That special someone across the hall in your dorm? The one you never had a chance to talk to? We're here to give you one last chance!
+    </p>
+
+    <p class="lead">
+      So here's how it works: you make a list of the <%= @limit %> people you wish you'd had a chance with, and we'll do the rest! Don't worry, we'll keep your choices secret, unless it's mutual. And if it is, only you and your match will know.
+    </p>
+  </div>
+</div>
+
+<div class="row" style="padding-bottom: 20px;">
+  <h3 class="text-center">So, what are you waiting for?!</h3>
+
+  <p class="text-center">
+    <%= link_to "Continue", { :action => :show }, :class => "btn btn-primary btn-large" %>
+  </p>
+</div>
