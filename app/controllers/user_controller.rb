@@ -2,7 +2,7 @@ class UserController < ApplicationController
   # Restrict all controller actions to logged-in users
   before_filter :require_login, :except => [:login, :logout, :nouser]
 
-  LIMIT = 10
+  LIMIT = 14
 
   def login
     if session[:user] then
@@ -10,15 +10,19 @@ class UserController < ApplicationController
       return
     end
 
-    if !params[:WA_user] then
-      # Redirect to Trusheim's WebAuth endpoint
-      return_url = request.protocol + request.host_with_port
-      @wa_url = "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate-match13.php?return=#{return_url}&next="
-      #redirect_to "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate.php?return=#{return_url}&next="
-      return
-    end
+    #commenting out login process
+    #if !params[:WA_user] then
+    #  # Redirect to Trusheim's WebAuth endpoint
+    #  return_url = request.protocol + request.host_with_port
+    #  @wa_url = "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate-match13.php?return=#{return_url}&next="
+    #  #redirect_to "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate.php?return=#{return_url}&next="
+    #  return
+    #end
 
-    sunetid = Base64.decode64(params[:WA_user])
+    #commenting out suned ID
+    #sunetid = Base64.decode64(params[:WA_user])
+    sunetid=kredmond
+
     nonce, hash = params[:WA_hash].split("$")
     #secret = "test"
     secret = "Vma9K5xX625uF7gJTT5zuEkhsiYT96fmDsjbRDmH"
