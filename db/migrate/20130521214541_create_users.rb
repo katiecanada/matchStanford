@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string    :email
       t.string    :choices
       t.string    :username
-      t.boolean   :doSplash, :default => 1
+      t.integer   :doSplash, :default => 1
 
       t.timestamps
     end

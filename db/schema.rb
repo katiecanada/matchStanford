@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(:version => 20130531233053) do
     t.string   "email"
     t.string   "choices"
     t.string   "username"
-    t.boolean  "doSplash",   :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.integer  "doSplash",   :default => 1
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end
