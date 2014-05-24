@@ -10,24 +10,28 @@ class UserController < ApplicationController
       return
     end
 
-    #commenting out 
-    if !params[:WA_user] then
-      # Redirect to Trusheim's WebAuth endpoint
-      return_url = request.protocol + request.host_with_port
-      @wa_url = "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate-match13.php?return=#{return_url}&next="
-      #redirect_to "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate.php?return=#{return_url}&next="
-      return
-    end
+    #commenting out webauth
+   # if !params[:WA_user] then
+    #  # Redirect to Trusheim's WebAuth endpoint
+    # return_url = request.protocol + request.host_with_port
+    #  @wa_url = "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate-match13.php?return=#{return_url}&next="
+    #  #redirect_to "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate.php?return=#{return_url}&next="
+    #  return
+    #end
 
-    sunetid = Base64.decode64(params[:WA_user])
-    nonce, hash = params[:WA_hash].split("$")
+    #test sunet id
+    sunetid='kredmond'
+   # sunetid = Base64.decode64(params[:WA_user])
+ 
+ #comment out for testing   nonce, hash = params[:WA_hash].split("$")
     #secret = "test"
     secret = "Vma9K5xX625uF7gJTT5zuEkhsiYT96fmDsjbRDmH"
 
-    hashstr = secret + nonce + sunetid
-    expectedHash = Digest::SHA1.hexdigest(hashstr)
+   # comment out for testing  hashstr = secret + nonce + sunetid
+  #commentout for testing  expectedHash = Digest::SHA1.hexdigest(hashstr)
 
-    if expectedHash == hash then
+#don't require hashes to match for testing
+    #if expectedHash == hash then
       user = User.where(:username => sunetid)[0]
       if !user then
         redirect_to :action => :nouser
@@ -40,9 +44,9 @@ class UserController < ApplicationController
       else
         redirect_to :action => :show
       end
-    else
-      redirect_to :action => :logout
-    end
+    #else
+     # redirect_to :action => :logout
+    #end
   end
 
   def logout
@@ -92,7 +96,7 @@ class UserController < ApplicationController
 
     choiceUsers = []
     JSON.parse(choices).each do |i|
-      choiceUsers.append User.select("firstName, middleName, lastName, id").find(i)
+      choiceUsers.append User.select("firstname, middlename, lastname, id").find(i)
     end
 
     render :json => choiceUsers
@@ -154,13 +158,13 @@ class UserController < ApplicationController
       return
     end
 
-    users = User.select("firstName, middleName, lastName, id")
+    users = User.select("firstname, middlename, lastname, id")
     queries = params[:query].downcase.split(' ')
 
     render :json => users.select { |u|
       rval = true
       queries.each do |query|
-        if !((!u.firstName.nil? && u.firstName.downcase.start_with?(query)) || (!u.middleName.nil? && u.middleName.downcase.start_with?(query)) || (!u.lastName.nil? && u.lastName.downcase.start_with?(query))) then
+        if !((!u.firstname.nil? && u.firstname.downcase.start_with?(query)) || (!u.middlename.nil? && u.middlename.downcase.start_with?(query)) || (!u.lastname.nil? && u.lastname.downcase.start_with?(query))) then
           rval = false
         end
       end

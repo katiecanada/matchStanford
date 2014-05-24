@@ -16,9 +16,9 @@ f.each_line do |line|
   u = User.new
 
   u.username = d[0]
-  u.firstName = d[1]
-  u.middleName = d[2]
-  u.lastName = d[3]
+  u.firstname = d[1]
+  u.middlename = d[2]
+  u.lastname = d[3]
   u.email = u.username + "@stanford.edu"
 
   u.save

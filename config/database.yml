@@ -5,8 +5,8 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
-  host:localhost
-  username:user
+  host: localhost
+  username: stanfordmatch14
   database: app-dev
   pool: 5
   timeout: 5000
