@@ -16,7 +16,7 @@
 
 <div class="row">
   <img src="/img/logo.png" width="200px" />
-  <div style="display: inline-block; float: right; padding-top:30px;" class="lead">Hello, <%= @user.firstName %> <%= @user.lastName %>! | <%= link_to "FAQ", :action => :faq %> | <%= link_to "Log Out", :action => :logout %></div>
+  <div style="display: inline-block; float: right; padding-top:30px;" class="lead">Hello, <%= @user.firstname %> <%= @user.lastname %>! | <%= link_to "FAQ", :action => :faq %> | <%= link_to "Log Out", :action => :logout %></div>
 </div>
 
 <div ng-app="ChoiceApp">
@@ -29,9 +29,9 @@
           <li ng-repeat="u in chosenUsers | makeranks" id="{{u.rank}}" class="{{(u.rank >= <%= @limit %>) | iif : 'muted' : ''}}">
             <div style="cursor: default; padding: 3px; margin: 3px; background-color: #fff; border: solid 1px #000; border-radius: 5px; -moz-border-radius: 5px;">
               <span class="badge">{{u.rank + 1}}</span>
-              {{u.firstName}}
-              {{u.middleName | iif : u.middleName : ""}}
-              {{u.lastName}}
+              {{u.firstname}}
+              {{u.middlename | iif : u.middlename : ""}}
+              {{u.lastname}}
               <a href="#" ng-click="removeChoice(u.rank)">(remove)</a>
             </div>
           </li>
@@ -57,11 +57,11 @@
 
       <div class="well">
         <ul class="unstyled">
-          <li ng-repeat="u in users | orderBy:'lastName'">
+          <li ng-repeat="u in users | orderBy:'lastname'">
             <a href="#" ng-click="addChoice(u)">
-              {{u.firstName}}
-              {{u.middleName | iif : u.middleName : ""}}
-              {{u.lastName}}
+              {{u.firstname}}
+              {{u.middlename | iif : u.middlename : ""}}
+              {{u.lastname}}
             </a>
           </li>
         </ul>

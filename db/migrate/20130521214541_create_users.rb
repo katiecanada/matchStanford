@@ -1,13 +1,13 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string    :firstName
-      t.string    :middleName
-      t.string    :lastName
+      t.string    :firstname
+      t.string    :middlename
+      t.string    :lastname
       t.string    :email
       t.string    :choices
       t.string    :username
-      t.boolean   :doSplash, :default => 1
+      t.integer   :doSplash, :default => 1
 
       t.timestamps
     end
