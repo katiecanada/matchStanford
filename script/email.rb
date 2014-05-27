@@ -73,23 +73,24 @@ def send_teaser(to_suid, to_name)
   #body = EmailRenderer.new.render_email("./script/crush-email.html", "MatchFOURTEEN: Someone Has A Crush On You!", to_suid, to_name, "")
   #File.open("./tmp/send.html", 'w') { |file| file.write(body) }
  # `cat tmp/send.html | sendmail -t`
- # message = {  
- #:subject=> "Someone Has a Crush on You",  
- #:from_name=> "MatchFOURTEEN",    
- #:to=>[  
- #  {  
- #    :email=> to_suid+"@stanford.edu",  
- #    :name=> to_name
- #  }  
- #],  
- #:html=>"<html><h1>Hi <strong>message</strong>, how are you?</h1></html>",  
- #:from_email=>"matchfourteen@gmail.com"  
-#}  
-#rendered = m.templates.render 'teaser',[{:name =>to_name}]
-#puts rendered['html']
-rendered = m.templates.render 'teaser', [{:name => to_name}]
 
-m.messages.send_template(rendered)
+rendered = m.templates.render 'teaser',[{:name =>"name", :content=>to_name}]
+puts rendered['html']
+
+  message = {  
+ :subject=> "Someone Has a Crush on You",  
+ :from_name=> "MatchFOURTEEN",    
+ :to=>[  
+   {  
+     :email=> to_suid+"@stanford.edu",  
+     :name=> to_name
+   }  
+ ],  
+ :html=>rendered['html'],
+ :from_email=>"matchfourteen@gmail.com"  
+}  
+
+sending = m.messages.send message
 end
 
 #
