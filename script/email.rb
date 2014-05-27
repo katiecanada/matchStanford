@@ -89,7 +89,7 @@ def send_teaser(to_suid, to_name)
 #puts rendered['html']
 rendered = m.templates.render 'teaser', [{:name => to_name}]
 
-mandrill.messages.send_template(rendered)
+m.messages.send_template(rendered)
 end
 
 #
