@@ -2,11 +2,12 @@ require 'erb'
 
 class EmailRenderer
   def set_variables(to_email, subject, to_name, from_name)
+    
     @headers = """From: MatchFOURTEEN <matchfourteen@gmail.com>
-To: #{to_email}
-Subject: #{subject}
-Mime-Version: 1.0
-Content-Type: text/html"""
+    To: #{to_email}
+    Subject: #{subject}
+    Mime-Version: 1.0
+    Content-Type: text/html"""
 
     @to_name = to_name
     @from_name = from_name
