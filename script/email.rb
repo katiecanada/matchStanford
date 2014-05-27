@@ -74,12 +74,11 @@ def send_teaser(to_suid, to_name)
   File.open("./tmp/send.html", 'w') { |file| file.write(body) }
   `cat tmp/send.html | sendmail -t`
   message = {  
- :subject=> "Hello from the Mandrill API",  
- :from_name=> "Your name",  
- :text=>"Hi message, how are you?",  
+ :subject=> "Someone Has a Crush on You",  
+ :from_name=> "MatchFOURTEEN",    
  :to=>[  
    {  
-     :email=> "kredmond@stanford.edu",  
+     :email=> "dhruv92@stanford.edu",  
      :name=> "Recipient1"  
    }  
  ],  
