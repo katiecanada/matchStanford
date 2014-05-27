@@ -11,27 +11,27 @@ class UserController < ApplicationController
     end
 
     #commenting out webauth
-   # if !params[:WA_user] then
+   if !params[:WA_user] then
     #  # Redirect to Trusheim's WebAuth endpoint
-    # return_url = request.protocol + request.host_with_port
-    #  @wa_url = "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate-match13.php?return=#{return_url}&next="
-    #  #redirect_to "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate.php?return=#{return_url}&next="
-    #  return
-    #end
+     return_url = request.protocol + request.host_with_port
+      @wa_url = "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate-match13.php?return=#{return_url}&next="
+      #redirect_to "https://www.stanford.edu/~trusheim/cgi-bin/wa-authenticate.php?return=#{return_url}&next="
+      return
+    end
 
     #test sunet id
-    sunetid='kredmond'
-   # sunetid = Base64.decode64(params[:WA_user])
+    #sunetid='kredmond'
+    sunetid = Base64.decode64(params[:WA_user])
  
- #comment out for testing   nonce, hash = params[:WA_hash].split("$")
+    nonce, hash = params[:WA_hash].split("$")
     #secret = "test"
     secret = "Vma9K5xX625uF7gJTT5zuEkhsiYT96fmDsjbRDmH"
-
-   # comment out for testing  hashstr = secret + nonce + sunetid
-  #commentout for testing  expectedHash = Digest::SHA1.hexdigest(hashstr)
+  
+   hashstr = secret + nonce + sunetid
+  expectedHash = Digest::SHA1.hexdigest(hashstr)
 
 #don't require hashes to match for testing
-    #if expectedHash == hash then
+    if expectedHash == hash then
       user = User.where(:username => sunetid)[0]
       if !user then
         redirect_to :action => :nouser
@@ -44,9 +44,9 @@ class UserController < ApplicationController
       else
         redirect_to :action => :show
       end
-    #else
-     # redirect_to :action => :logout
-    #end
+    else
+      redirect_to :action => :logout
+    end
   end
 
   def logout
