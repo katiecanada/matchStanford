@@ -75,7 +75,7 @@ def crushed
 
   puts "Top Chosen"
   agg.sort_by { |k,v| v }.reverse[0..10].each do |u|
-    #puts "#{u[0]} by #{u[1]} users"
+    puts "#{u[0]} by #{u[1]} users"
   end
 
   return

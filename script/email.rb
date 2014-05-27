@@ -35,7 +35,7 @@ def get_chosen
   users = User.all
 
   users.each do |u|
-    allusers.append({:name => u.firstName, :suid => u.username})
+    allusers.append({:name => u.firstname, :suid => u.username})
 
     choices = u.choices
     if choices.nil? or choices.blank? then
@@ -47,7 +47,7 @@ def get_chosen
     if choicesArray.length > 0 then
       choicesArray.each do |i|
         to_user = User.find(i)
-        chosen.append({:name => to_user.firstName, :suid => to_user.username})
+        chosen.append({:name => to_user.firstname, :suid => to_user.username})
       end
     end
   end
@@ -115,8 +115,8 @@ def get_matches
       choicesArray.each do |i|
         fromu = User.find(i)
         choicesEdges.append({
-          :from => { :suid => u.username, :name => "#{u.firstName} #{u.middleName} #{u.lastName}" },
-          :to => { :suid => fromu.username, :name => "#{fromu.firstName} #{fromu.middleName} #{fromu.lastName}" },
+          :from => { :suid => u.username, :name => "#{u.firstname} #{u.middlename} #{u.lastname}" },
+          :to => { :suid => fromu.username, :name => "#{fromu.firstname} #{fromu.middlename} #{fromu.lastname}" },
         })
       end
     end
