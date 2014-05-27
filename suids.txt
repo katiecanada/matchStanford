@@ -1,3 +1,2 @@
-kredmond,Katie,Anne,Redmond
-dhruv92,Dhruv,,Amin
-rmoody,Rush,,Moody
+kredmond,katie,anne,redmond
+dhruv92,dhruv,,amin
