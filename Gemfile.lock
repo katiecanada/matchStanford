@@ -40,6 +40,7 @@ GEM
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    excon (0.33.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.2)
@@ -52,6 +53,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mandrill-api (1.0.51)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     mime-types (1.23)
     multi_json (1.7.3)
     pg (0.17.1)
@@ -111,6 +115,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
+  mandrill-api
   pg
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
