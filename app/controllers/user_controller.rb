@@ -164,7 +164,7 @@ class UserController < ApplicationController
     render :json => users.select { |u|
       rval = true
       queries.each do |query|
-        if !((!u.firstname.nil? && u.firstname.downcase.start_with?(query)) || (!u.middlename.nil? && u.middlename.downcase.start_with?(query)) || (!u.lastname.nil? && u.lastname.downcase.start_with?(query))||(!u.username.nil? && u.username.downcase.start_with?(query)) then
+        if !((!u.firstname.nil? && u.firstname.downcase.start_with?(query)) || (!u.middlename.nil? && u.middlename.downcase.start_with?(query)) || (!u.lastname.nil? && u.lastname.downcase.start_with?(query))||(!u.username.nil? && u.username.downcase.start_with?(query))) then
           rval = false
         end
       end
