@@ -1,5 +1,6 @@
 
 require 'erb'
+require 'mandrill'
 
 class EmailRenderer
   def set_variables(to_email, subject, to_name, from_name)
@@ -61,13 +62,32 @@ def get_chosen
   return chosen, notChosen
 end
 
+
+
 #
 # Send a teaser to one user
 #
 def send_teaser(to_suid, to_name)
+  m = Mandrill::API.new
+
   body = EmailRenderer.new.render_email("./script/crush-email.html", "MatchFOURTEEN: Someone Has A Crush On You!", to_suid, to_name, "")
   File.open("./tmp/send.html", 'w') { |file| file.write(body) }
   `cat tmp/send.html | sendmail -t`
+  message = {  
+ :subject=> "Hello from the Mandrill API",  
+ :from_name=> "Your name",  
+ :text=>"Hi message, how are you?",  
+ :to=>[  
+   {  
+     :email=> "kredmond@stanford.edu",  
+     :name=> "Recipient1"  
+   }  
+ ],  
+ :html=>"<html><h1>Hi <strong>message</strong>, how are you?</h1></html>",  
+ :from_email=>"matchfourteen@gmail.com"  
+}  
+sending = m.messages.send message  
+puts sending
 end
 
 #
