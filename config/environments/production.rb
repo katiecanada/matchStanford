@@ -64,18 +64,16 @@ LastChance::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-
-#mailer
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-  address: "gmail.com",
-  port: 25,
-  authentication: "plain",
-  user_name: "matchfourteen@gmail.com",
-  password: ENV['lelandlovesmatches2k14'],
-  enable_starttls_auto: false
+  
+ActionMailer::Base.smtp_settings = {
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['app25609945@heroku.com'],
+    :password =>       ENV['qc9O2Hf81H36EuRlDb0a8A'],
+    :domain =>         'heroku.com',
+    :authentication => :plain
 }
-config.action_mailer.raise_delivery_errors = true
+ActionMailer::Base.delivery_method = :smtp
 
 
 end
