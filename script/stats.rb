@@ -14,8 +14,10 @@ def crushed
       choosers.append(u.username)
 
       choicesArray.each do |i|
-        fromu = User.find(i).username
-        choicesEdges.append({:from => u.username, :to => fromu})
+        if i>0
+          fromu = User.find(i).username
+          choicesEdges.append({:from => u.username, :to => fromu})
+        end
       end
     end
   end
