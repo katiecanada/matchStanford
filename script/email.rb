@@ -3,11 +3,12 @@ require 'erb'
 
 class EmailRenderer
   def set_variables(to_email, subject, to_name, from_name)
-    @headers = """From: MatchTHIRTEEN <matchfourteen@gmail.com>
-To: #{to_email}
-Subject: #{subject}
-Mime-Version: 1.0
-Content-Type: text/html"""
+    
+    @headers = """From: MatchFOURTEEN <matchfourteen@gmail.com>
+    To: #{to_email}
+    Subject: #{subject}
+    Mime-Version: 1.0
+    Content-Type: text/html"""
 
     @to_name = to_name
     @from_name = from_name
@@ -64,7 +65,7 @@ end
 # Send a teaser to one user
 #
 def send_teaser(to_suid, to_name)
-  body = EmailRenderer.new.render_email("./script/crush-email.html", "MatchTHIRTEEN: You've Been Ranked!", to_suid, to_name, "")
+  body = EmailRenderer.new.render_email("./script/crush-email.html", "MatchFOURTEEN: Someone Has A Crush On You!", to_suid, to_name, "")
   File.open("./tmp/send.html", 'w') { |file| file.write(body) }
   `cat tmp/send.html | sendmail -t`
 end
@@ -143,7 +144,7 @@ def get_matches
 end
 
 def send_match(to_suid, match_name)
-  body = EmailRenderer.new.render_email("./script/match-email.html", "MatchTHIRTEEN: You've Got A Match!", to_suid, "", match_name)
+  body = EmailRenderer.new.render_email("./script/match-email.html", "MatchFOURTEEN: You've Got A Match!", to_suid, "", match_name)
   File.open("./tmp/send.html", 'w') { |file| file.write(body) }
   `cat tmp/send.html | sendmail -t`
 end
