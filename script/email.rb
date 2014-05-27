@@ -167,9 +167,28 @@ def get_matches
 end
 
 def send_match(to_suid, match_name)
-  body = EmailRenderer.new.render_email("./script/match-email.html", "MatchFOURTEEN: You've Got A Match!", to_suid, "", match_name)
-  File.open("./tmp/send.html", 'w') { |file| file.write(body) }
-  `cat tmp/send.html | sendmail -t`
+  #body = EmailRenderer.new.render_email("./script/match-email.html", "MatchFOURTEEN: You've Got A Match!", to_suid, "", match_name)
+  #File.open("./tmp/send.html", 'w') { |file| file.write(body) }
+ # `cat tmp/send.html | sendmail -t`
+  m = Mandrill::API.new
+
+  rendered = m.templates.render 'match',[{:name =>"match", :content=>match_name}]
+  puts rendered['html']
+
+  message = {  
+    :subject=> "You've got a match!",  
+    :from_name=> "MatchFOURTEEN",    
+    :to=>[  
+      {  
+     :email=> to_suid+"@stanford.edu",  
+     :name=> to_name
+      }  
+    ],  
+    :html=>rendered['html'],
+    :from_email=>"matchfourteen@gmail.com"  
+  }  
+
+  sending = m.messages.send message
 end
 
 def mail_matches
