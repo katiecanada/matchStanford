@@ -1,0 +1,10 @@
+
+===============================
+Commands:
+  send_teaser(to_suid, to_name)
+  blast_teasers
+  send_match(to_suid, match_name)
+  matches = get_matches
+  mail_matches
+===============================
+
