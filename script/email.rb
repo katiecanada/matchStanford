@@ -181,7 +181,6 @@ def send_match(to_suid, match_name)
     :to=>[  
       {  
      :email=> to_suid+"@stanford.edu",  
-     :name=> to_name
       }  
     ],  
     :html=>rendered['html'],
