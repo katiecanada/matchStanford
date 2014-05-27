@@ -158,13 +158,13 @@ class UserController < ApplicationController
       return
     end
 
-    users = User.select("firstname, middlename, lastname, id")
+    users = User.select("firstname, middlename, lastname, id, username")
     queries = params[:query].downcase.split(' ')
 
     render :json => users.select { |u|
       rval = true
       queries.each do |query|
-        if !((!u.firstname.nil? && u.firstname.downcase.start_with?(query)) || (!u.middlename.nil? && u.middlename.downcase.start_with?(query)) || (!u.lastname.nil? && u.lastname.downcase.start_with?(query)) ) then
+        if !((!u.firstname.nil? && u.firstname.downcase.start_with?(query)) || (!u.middlename.nil? && u.middlename.downcase.start_with?(query)) || (!u.lastname.nil? && u.lastname.downcase.start_with?(query))||(!u.username.nil? && u.username.downcase.start_with(query)) ) then
           rval = false
         end
       end
