@@ -1,3 +1,4 @@
+
 require 'erb'
 
 class EmailRenderer
@@ -162,6 +163,7 @@ def mail_matches
   puts "Sent #{sent_mails} emails"
 end
 
+blast_teasers
 
 #
 # Display help
