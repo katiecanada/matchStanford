@@ -78,7 +78,7 @@ rendered = m.templates.render 'teaser',[{:name =>"name", :content=>to_name}]
 puts rendered['html']
 
   message = {  
- :subject=> "Someone Has a Crush on You",  
+ :subject=> "MatchFOURTEEN: Someone Has a Crush on You",  
  :from_name=> "MatchFOURTEEN",    
  :to=>[  
    {  
@@ -176,7 +176,7 @@ def send_match(to_suid, match_name)
   puts rendered['html']
 
   message = {  
-    :subject=> "You've got a match!",  
+    :subject=> "MatchFOURTEEN: You've got a match!",  
     :from_name=> "MatchFOURTEEN",    
     :to=>[  
       {  
