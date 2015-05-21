@@ -6,6 +6,8 @@
 
 *.DS_Store
 suids.txt
+suids
+suids_2014_Idap.txt
 
 # Ignore bundler config
 /.bundle
